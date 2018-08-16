@@ -1,36 +1,19 @@
-<?php
+<?php 
+   
+   namespace amaro;
+  
+   require 'classes\ambiente.php';
+   require 'classes\arquivo.php';
+   require 'classes\quadrado.php';
+   
+   use amaro\ambientes as ambientes;
+   use amaro\arquivos as arquivos;
+   use amaro\quadrados\perfeitos as perfeitos;
 
-   set_error_handler(function( $errno, $errstr, $errfile, $errline, array $errcontext ){
-  	
-   	$errorStr = "ERROR DESCONHECIDO, COMUNIQUE O ADMINISTRADOR";
-    $errorCode = -1000;
-    $errorNo = $errno;
-    $errorLine = $errline;
-    $errorFile = $errfile;
-    	
-   	if (0 === error_reporting()) {
-      return false;
-    }
-    
-    $str = explode(":",$errstr);
-
-    if(count($str) >= 1){
-    	
-      // TRATAMENTO FILE_GET_CONTENTS
-      if(strpos($str[0],"file_get_contents") !== false){
-      $errorStr = "ARQUIVO INFORMADO NAO LOCALIZADO";	
-      }
-    	
-    }else{
-      	
-    }
-    
-    throw new ErrorException($errorStr, $errorCode, $errorNo, $errorFile, $errorLine);
-    
-   });
-
+   ambientes\Ambiente::init();
+   
    try{
-
+   	
    if($argc < 2){
    	
    	echo "\n";
@@ -56,10 +39,25 @@
    }else{
    	
    	$path = $argv[1];
-   
+    $handler = fopen($path,"r");
     	
-    if($file = file_get_contents($path)){
-     echo "arquivo";
+    if($handler){
+        
+    	$quadrado = array();
+        
+    	while(!feof($handler)){
+    	 $line = fgets($handler);
+    	 $col = explode(chr(32),$line);
+    	}
+    	
+    	$q = new perfeitos\Quadrado();
+    	
+    	$q->valid();
+    	
+    	fclose($handler);
+    	
+    	
+    	
     }else{
    
 	    echo "\n";
