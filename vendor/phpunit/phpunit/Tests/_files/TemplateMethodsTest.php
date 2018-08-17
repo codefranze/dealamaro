@@ -1,5 +1,7 @@
 <?php
-class TemplateMethodsTest extends PHPUnit_Framework_TestCase
+use PHPUnit\Framework\TestCase;
+
+class TemplateMethodsTest extends TestCase
 {
     public static function setUpBeforeClass()
     {
@@ -19,13 +21,13 @@ class TemplateMethodsTest extends PHPUnit_Framework_TestCase
     public function testOne()
     {
         print __METHOD__ . "\n";
-        $this->assertTrue(TRUE);
+        $this->assertTrue(true);
     }
 
     public function testTwo()
     {
         print __METHOD__ . "\n";
-        $this->assertTrue(FALSE);
+        $this->assertTrue(false);
     }
 
     protected function assertPostConditions()
@@ -43,10 +45,9 @@ class TemplateMethodsTest extends PHPUnit_Framework_TestCase
         print __METHOD__ . "\n";
     }
 
-    protected function onNotSuccessfulTest(Exception $e)
+    protected function onNotSuccessfulTest(Exception $t)
     {
         print __METHOD__ . "\n";
-        throw $e;
+        throw $t;
     }
 }
-?>

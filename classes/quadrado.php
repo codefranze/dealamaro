@@ -39,7 +39,8 @@ class Quadrado{
     }
     
     $this->setDimensao($expLinCol);
-      	
+    $this->setNumeroLinhas(count($expLinCol));
+    
   }
   
   private function getLinhaCount(){
@@ -56,40 +57,98 @@ class Quadrado{
   	  }else{	
   	  	if($qtdCols !== count($this->getDimensao()[$l])){
   	  	  $this->setValido(false);
-  	  	  $this->setMensagem("O QUADRADO NÃO E PERFEITO DEVIDO AO NUMERO DIFERENTE DE COLUNAS POR LINHA");
+  	  	  $this->setMensagem("O QUADRADO NAO E PERFEITO DEVIDO AO NUMERO DIFERENTE DE COLUNAS POR LINHA");
   	  	}
   	  }
   	 $this->setNumeroColunas($qtdCols);
   	}
   	
   	if($this->getValido()){
-  	  	  $this->setMensagem("O QUADRADO E PERFEITO");
-  		
+  	  	
   	 // VALIDACAO DE NUMERO DE LINHAS X COLUNAS
+  	  if($this->getNumeroColunas() === $this->getNumeroLinhas()){
+  	  	
+  	   // SOMA POR LINHA
+  	   for($l = 0; $l < $this->getLinhaCount(); $l++){
+  	    $cols = $this->getDimensao()[$l];
+  	    $acumula = 0;
+  	    for($c = 0; $c < count($cols); $c++ ){
+  	     $acumula += $cols[$c];  	
+  	    }
+  	    $soma[] = $acumula;	
+  	   }
+  	   
+  	   // SOMA POR COLUNA 
+  	   for($c = 0; $c < $this->getNumeroColunas(); $c++){
+  	   	$acumula = 0;
+  	   	for($l = 0; $l < $this->getNumeroLinhas(); $l++){
+  	   	 $acumula += $this->getDimensao()[$l][$c]; 	
+  	   	}
+  	   	$soma[] = $acumula;
+  	   }
+  	   
+  	   // SOMA PRIMEIRA DIAGONAL
+  	   $acumula = 0;
+  	   $col = 0;
+  	   for($l = 0; $l < $this->getNumeroLinhas(); $l++){
+  	   	$acumula += $this->getDimensao()[$l][$col];
+  	   	$col++;
+  	   }
+  	   $soma[] = $acumula;
+  	   
+  	   // SOMA SEGUNDA DIAGONAL
+  	   $acumula = 0;
+  	   $col = ($this->getNumeroColunas()-1);
+  	   for($l = 0; $l < $this->getNumeroLinhas(); $l++){
+  	   	$acumula += $this->getDimensao()[$l][$col];
+  	   	$col--;
+  	   }
+  	   $soma[] = $acumula;
+  	   
+  	   $this->setSoma($soma);
+  	   
+  	   // VALIDA IGUALDADE DAS SOMAS
+  	   if($this->validarSoma()){
+  	   	$this->setValido(true);
+  	    $this->setMensagem("O QUADRADO E PERFEITO");
+  	   }else{
+  	  	$this->setValido(false);
+  	  	$this->setMensagem("O QUADRADO NAO E PERFEITO");
+  	   }
+  	  	
+  	  }else{
+  	  	$this->setValido(false);
+  	  	$this->setMensagem("O QUADRADO NAO E PERFEITO DEVIDO AO NUMERO DE LINHAS SER IGUAL DE COLUNAS");
+  	  }	
   		
   	}
   	
-  	// SOMA LINHA
-  	/* for($l = 0; $l < $this->getLinhaCount(); $l++){
-  	 $cols = $this->getDimensao()[$l];
-  	 $acumula = 0;
-  	 for($c = 0; $c < count($cols); $c++ ){
-  	  $acumula += $cols[$c];  	
-  	 }
-  	 $soma[] = $acumula;	
-  	} */
-  	
-  	// SOMA SOLUNA
-  	/*
-  	for($l = 0; $l < $this->getLinhaCount(); $l++){
-  	 $cols = $this->getDimensao()[$l];
-  	 $acumula = 0;
-  	 for($c = 0; $c < count($cols); $c++ ){
-  	  $acumula += $cols[$c];  	
-  	 }
-  	 $soma[] = $acumula;	
-  	}*/
-  	
+  }
+  
+  private function validarSoma(){
+  	$valor = 0;
+  	for($i=0; $i<$this->getSomaCount();$i++){
+  	 if($i == 0){
+      $valor = $this->getSoma()[$i];
+  	 }else{
+  	  if($valor !== $this->getSoma()[$i]){
+  	    return false;
+  	   }	
+  	  }
+  	}
+  	return true;
+  }
+  
+  private function getSomaCount(){
+  	return count($this->getSoma());
+  }
+  
+  private function setSoma(array $soma){
+   $this->soma = $soma;	
+  }
+  
+  private function getSoma(){
+  	return $this->soma;
   }
   
   private function setValido($valido){

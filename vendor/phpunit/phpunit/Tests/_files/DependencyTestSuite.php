@@ -1,15 +1,14 @@
 <?php
-require_once 'DependencyFailureTest.php';
-require_once 'DependencySuccessTest.php';
+use PHPUnit\Framework\TestSuite;
 
 class DependencyTestSuite
 {
     public static function suite()
     {
-        $suite = new PHPUnit_Framework_TestSuite('Test Dependencies');
+        $suite = new TestSuite('Test Dependencies');
 
-        $suite->addTestSuite('DependencySuccessTest');
-        $suite->addTestSuite('DependencyFailureTest');
+        $suite->addTestSuite(DependencySuccessTest::class);
+        $suite->addTestSuite(DependencyFailureTest::class);
 
         return $suite;
     }
