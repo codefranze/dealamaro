@@ -48,7 +48,7 @@ class Quadrado{
   
   public function validarPerfeicao(){
   	
-  	// VALIDACAO DE NUMERO DE COLUNAS
+  	// VALIDACAO DO NUMERO DE COLUNAS POR LINHA
   	$qtdCols = 0;
   	for($l = 0; $l < $this->getLinhaCount(); $l++){
   	  if($l === 0){
@@ -56,16 +56,15 @@ class Quadrado{
   	  }else{	
   	  	if($qtdCols !== count($this->getDimensao()[$l])){
   	  	  $this->setValido(false);
+  	  	  $this->setMensagem("O QUADRADO NÃO E PERFEITO DEVIDO AO NUMERO DIFERENTE DE COLUNAS POR LINHA");
   	  	}
   	  }
+  	 $this->setNumeroColunas($qtdCols);
   	}
   	
   	if($this->getValido()){
-
-  	 // VALIDACAO DE NUMERO DE LINHAS E COLUNAS
-
   		
-  		
+  	 // VALIDACAO DE NUMERO DE LINHAS X COLUNAS
   		
   	}
   	
@@ -117,11 +116,17 @@ class Quadrado{
   }
   
   private function setMensagem($mensagem){
-  	$this->mensagem = $mensagem;
+   $this->mensagem = $mensagem;
   }
   
-  public function getMensagem(){
+  private function getMensagem(){
   	return $this->mensagem;
+  }
+  
+  public function exibirMensagem(){
+  	echo "\n";
+    echo $this->getMensagem();	
+  	echo "\n";
   }
 
 }

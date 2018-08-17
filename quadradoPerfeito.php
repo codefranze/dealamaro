@@ -53,30 +53,22 @@
    	 $pq->setContent($ar->getContent());
    	 $pq->converterContent();
    	 $pq->validarPerfeicao();
+   	 $pq->exibirMensagem();
    	 
-   	 
-   	 
-   	 unset($ar);
    	 unset($pq);
    	 	
    	}else{
-   		echo "NO";
-   	  // MENSAGEM	
+   	  echo "\n";
+   	  echo "ARQUIVO INFORMADO NAO LOCALIZADO";
+   	  echo "\n";
    	}
+   	
+   	unset($ar);
    	
    }
    
    }catch(ErrorException $e){
-   	   
-	    echo "\n";
-	   	echo "|---------------------------------------------------|\n";
-	   	echo "|                                                   |\n";
-	   	echo "| ";
-	   	echo $e->getMessage();
-	   	echo "|\n";
-	   	echo "|                                                   |\n";
-	   	echo "|---------------------------------------------------|\n";
-   	
+     echo $e->getMessage();
    }
     
    exit(1);

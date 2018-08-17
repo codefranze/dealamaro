@@ -5,6 +5,7 @@ class Arquivo{
  
  private $path;
  private $content;
+ private $mensagem;
  
  private function setContent($content){
   $this->content = $content;
@@ -28,6 +29,11 @@ class Arquivo{
  public function read(){
   $this->setContent(file_get_contents($this->getPath()));
  }
+ 
+ private function setMensagem($mensagem){
+  $this->mensagem = $mensagem;	
+ }
+ 
 	
 }
 ?>
