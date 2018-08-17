@@ -40,10 +40,12 @@
          
   	  	 foreach($json->products as $keyProd => $p){
   	  	  if($p->id !== $produtoEncontrado->id){
-  	  	   foreach($p->tagsVector as $keyTags => $value){
-  	  	     echo $produtoEncontrado->tagsVector[$keyTags] . " => " . $value;
-  	  	     echo "\n";
-  	  	   }
+  	  	    $acumulado = 0;
+  	  	  	foreach($p->tagsVector as $keyTags => $value){
+  	  	     $acumulado +=  pow(($produtoEncontrado->tagsVector[$keyTags] - $value),2);
+  	  	    }
+  	  	   $d = sqrt($acumulado);
+  	  	   echo $s = (1/(1+$d));
   	  	   echo "\n";
   	  	  }
   	  	 }
