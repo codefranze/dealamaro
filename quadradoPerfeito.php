@@ -8,7 +8,7 @@
    
    use amaro\ambientes as ambientes;
    use amaro\arquivos as arquivos;
-   use amaro\quadrados\perfeitos as perfeitos;
+   use amaro\quadrados as quadrados;
 
    ambientes\Ambiente::init();
    
@@ -48,14 +48,14 @@
 
    	 $ar->read();
    	 
-   	 $pq = new perfeitos\Quadrado();
+   	 $q = new quadrados\Quadrado();
    	 
-   	 $pq->setContent($ar->getContent());
-   	 $pq->converterContent();
-   	 $pq->validarPerfeicao();
-   	 $pq->exibirMensagem();
+   	 $q->setContent($ar->getContent());
+   	 $q->converterContent();
+   	 $q->validarPerfeicao();
+   	 $q->exibirMensagem();
    	 
-   	 unset($pq);
+   	 unset($q);
    	 	
    	}else{
    	  echo "\n";

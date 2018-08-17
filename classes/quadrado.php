@@ -1,5 +1,5 @@
 <?php
-namespace amaro\quadrados\perfeitos;
+namespace amaro\quadrados;
 
 class Quadrado{
 	
@@ -63,6 +63,7 @@ class Quadrado{
   	}
   	
   	if($this->getValido()){
+  	  	  $this->setMensagem("O QUADRADO E PERFEITO");
   		
   	 // VALIDACAO DE NUMERO DE LINHAS X COLUNAS
   		
@@ -95,7 +96,7 @@ class Quadrado{
   	$this->valido = $valido;
   }
   
-  public function getValido(){
+  private function getValido(){
   	return $this->valido;
   }
   
