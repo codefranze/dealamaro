@@ -6,7 +6,10 @@ class Quadrado{
   private $content = null;
   private $dimensao = array();
   private $soma = array();
-  private $valid = false;
+  private $valido = true;
+  private $numeroColunas = 0;
+  private $numeroLinhas = 0;
+  private $mensagem = null;
   
   private function setDimensao(array $dimensao){
    $this->dimensao = $dimensao;
@@ -24,7 +27,7 @@ class Quadrado{
   	return $this->content;
   }
     
-  public function convertContentDimensao(){
+  public function converterContent(){
     
   	$expLin = explode(chr(10),$this->getContent());
     $expLinCol = array();
@@ -45,17 +48,39 @@ class Quadrado{
   
   public function validarPerfeicao(){
   	
-  	  	// SOMA LINHA
+  	// VALIDACAO DE NUMERO DE COLUNAS
+  	$qtdCols = 0;
   	for($l = 0; $l < $this->getLinhaCount(); $l++){
-  	 $cols = $this->getDimensao()[$l];
-  	 $acumula = 0;
-  	 for($c = 0; $c < count($cols); $c++ ){
-  	  $acumula += $cols[$c];  	
-  	 }
-  	 $soma[] = $acumula;	
+  	  if($l === 0){
+  	  	$qtdCols = count($this->getDimensao()[$l]);
+  	  }else{	
+  	  	if($qtdCols !== count($this->getDimensao()[$l])){
+  	  	  $this->setValido(false);
+  	  	}
+  	  }
   	}
   	
+  	if($this->getValido()){
+
+  	 // VALIDACAO DE NUMERO DE LINHAS E COLUNAS
+
+  		
+  		
+  		
+  	}
+  	
+  	// SOMA LINHA
+  	/* for($l = 0; $l < $this->getLinhaCount(); $l++){
+  	 $cols = $this->getDimensao()[$l];
+  	 $acumula = 0;
+  	 for($c = 0; $c < count($cols); $c++ ){
+  	  $acumula += $cols[$c];  	
+  	 }
+  	 $soma[] = $acumula;	
+  	} */
+  	
   	// SOMA SOLUNA
+  	/*
   	for($l = 0; $l < $this->getLinhaCount(); $l++){
   	 $cols = $this->getDimensao()[$l];
   	 $acumula = 0;
@@ -63,7 +88,7 @@ class Quadrado{
   	  $acumula += $cols[$c];  	
   	 }
   	 $soma[] = $acumula;	
-  	}
+  	}*/
   	
   }
   
@@ -73,6 +98,30 @@ class Quadrado{
   
   public function getValido(){
   	return $this->valido;
+  }
+  
+  private function setNumeroColunas($numeroColunas){
+   $this->numeroColunas = $numeroColunas;	
+  }
+  
+  private function getNumeroColunas(){
+  	return $this->numeroColunas;
+  }
+  
+  private function setNumeroLinhas($numeroLinhas){
+   $this->numeroLinhas = $numeroLinhas;
+  }
+  
+  private function getNumeroLinhas(){
+   return $this->numeroLinhas;
+  }
+  
+  private function setMensagem($mensagem){
+  	$this->mensagem = $mensagem;
+  }
+  
+  public function getMensagem(){
+  	return $this->mensagem;
   }
 
 }

@@ -5,11 +5,9 @@
    require 'classes\Ambiente.php';
    require 'classes\Arquivo.php';
    require 'classes\Quadrado.php';
-   require 'classes\Mensagem.php';
    
    use amaro\ambientes as ambientes;
    use amaro\arquivos as arquivos;
-   use amaro\mensagens as mensagens;
    use amaro\quadrados\perfeitos as perfeitos;
 
    ambientes\Ambiente::init();
@@ -42,21 +40,23 @@
    	
    	$path = $argv[1];
    	
-   	$arq = new arquivos\Arquivo();
+   	$ar = new arquivos\Arquivo();
    	
-   	$arq->setPath($path);
+   	$ar->setPath($path);
    	
-   	if($arq->exists()){
+   	if($ar->exists()){
 
-   	 $arq->read();
+   	 $ar->read();
    	 
    	 $pq = new perfeitos\Quadrado();
    	 
-   	 $pq->setContent($arq->getContent());
-   	 $pq->convertContentDimensao();
+   	 $pq->setContent($ar->getContent());
+   	 $pq->converterContent();
    	 $pq->validarPerfeicao();
    	 
-   	 unset($arq);
+   	 
+   	 
+   	 unset($ar);
    	 unset($pq);
    	 	
    	}else{
@@ -65,7 +65,7 @@
    	}
    	
    }
-    
+   
    }catch(ErrorException $e){
    	   
 	    echo "\n";
