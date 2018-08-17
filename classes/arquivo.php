@@ -1,9 +1,33 @@
 <?php 
 namespace amaro\arquivos;
 
-class arquivo{
+class Arquivo{
  
- public function read(){}	
+ private $path;
+ private $content;
+ 
+ private function setContent($content){
+  $this->content = $content;
+ }
+ public function getContent(){
+  return $this->content;  
+ }
+ 
+ public function setPath($path){
+  $this->path = $path;	
+ }
+ 
+ public function getPath(){
+  return $this->path;
+ }
+ 
+ public function exists(){
+  return file_exists($this->path);
+ }
+ 
+ public function read(){
+  $this->setContent(file_get_contents($this->getPath()));
+ }
 	
 }
 ?>

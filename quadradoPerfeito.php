@@ -39,6 +39,32 @@
    }else{
    	
    	$path = $argv[1];
+   	
+   	$arq = new arquivos\Arquivo();
+   	
+   	$arq->setPath($path);
+   	
+   	if($arq->exists()){
+
+   	 $arq->read();
+   	 
+   	 $pq = new perfeitos\Quadrado();
+   	 
+   	 $pq->setContent($arq->getContent());
+   	 $pq->convertContentDimensao();
+   	 print_r($pq->getDimensao());
+   	 
+   	 
+   	 unset($arq);
+   	 unset($pq);
+   	 	
+   	}else{
+   		echo "NO";
+   	  // MENSAGEM	
+   	}
+   	
+   	/*
+   	$path = $argv[1];
     $handler = fopen($path,"r");
     	
     if($handler){
@@ -68,7 +94,7 @@
 	   	echo "|---------------------------------------------------|\n";
 	   	
     }
-    	
+    	*/
     }
     
    }catch(ErrorException $e){
