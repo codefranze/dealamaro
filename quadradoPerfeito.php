@@ -54,7 +54,7 @@
    	 
    	 $pq->setContent($arq->getContent());
    	 $pq->convertContentDimensao();
-   	 print_r(count($pq->getDimensao()));
+   	 $pq->validarPerfeicao();
    	 
    	 unset($arq);
    	 unset($pq);

@@ -3,14 +3,16 @@ namespace amaro\quadrados\perfeitos;
 
 class Quadrado{
 	
-  private $content;
-  private $dimensao;
-	
+  private $content = null;
+  private $dimensao = array();
+  private $soma = array();
+  private $valid = false;
+  
   private function setDimensao(array $dimensao){
    $this->dimensao = $dimensao;
   }
   
-  public function getDimensao(){
+  private function getDimensao(){
   	return $this->dimensao;
   }
   
@@ -32,7 +34,45 @@ class Quadrado{
        $expLinCol[$i] = explode(chr(32),$expLin[$i]);
       }
     }
+    
+    $this->setDimensao($expLinCol);
       	
+  }
+  
+  private function getLinhaCount(){
+  	return count($this->getDimensao());
+  }
+  
+  public function validarPerfeicao(){
+  	
+  	  	// SOMA LINHA
+  	for($l = 0; $l < $this->getLinhaCount(); $l++){
+  	 $cols = $this->getDimensao()[$l];
+  	 $acumula = 0;
+  	 for($c = 0; $c < count($cols); $c++ ){
+  	  $acumula += $cols[$c];  	
+  	 }
+  	 $soma[] = $acumula;	
+  	}
+  	
+  	// SOMA SOLUNA
+  	for($l = 0; $l < $this->getLinhaCount(); $l++){
+  	 $cols = $this->getDimensao()[$l];
+  	 $acumula = 0;
+  	 for($c = 0; $c < count($cols); $c++ ){
+  	  $acumula += $cols[$c];  	
+  	 }
+  	 $soma[] = $acumula;	
+  	}
+  	
+  }
+  
+  private function setValido($valido){
+  	$this->valido = $valido;
+  }
+  
+  public function getValido(){
+  	return $this->valido;
   }
 
 }
