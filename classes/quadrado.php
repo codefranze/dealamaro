@@ -23,10 +23,15 @@ class Quadrado{
   }
     
   public function convertContentDimensao(){
-   
-  	$exp = explode(chr(32),$this->getContent());
-   
-    $this->setDimensao($exp);
+    
+  	$expLin = explode(chr(10),$this->getContent());
+    $expLinCol = array();
+    for($i = 0; $i < count($expLin); $i++){
+      $expCol = explode(chr(32),$expLin[$i]);
+      if(count($expCol) > 1){
+       $expLinCol[$i] = explode(chr(32),$expLin[$i]);
+      }
+    }
       	
   }
 

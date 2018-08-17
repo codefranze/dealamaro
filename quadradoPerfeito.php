@@ -2,12 +2,14 @@
    
    namespace amaro;
   
-   require 'classes\ambiente.php';
-   require 'classes\arquivo.php';
-   require 'classes\quadrado.php';
+   require 'classes\Ambiente.php';
+   require 'classes\Arquivo.php';
+   require 'classes\Quadrado.php';
+   require 'classes\Mensagem.php';
    
    use amaro\ambientes as ambientes;
    use amaro\arquivos as arquivos;
+   use amaro\mensagens as mensagens;
    use amaro\quadrados\perfeitos as perfeitos;
 
    ambientes\Ambiente::init();
@@ -52,8 +54,7 @@
    	 
    	 $pq->setContent($arq->getContent());
    	 $pq->convertContentDimensao();
-   	 print_r($pq->getDimensao());
-   	 
+   	 print_r(count($pq->getDimensao()));
    	 
    	 unset($arq);
    	 unset($pq);
@@ -63,39 +64,7 @@
    	  // MENSAGEM	
    	}
    	
-   	/*
-   	$path = $argv[1];
-    $handler = fopen($path,"r");
-    	
-    if($handler){
-        
-    	$quadrado = array();
-        
-    	while(!feof($handler)){
-    	 $line = fgets($handler);
-    	 $col = explode(chr(32),$line);
-    	}
-    	
-    	$q = new perfeitos\Quadrado();
-    	
-    	$q->valid();
-    	
-    	fclose($handler);
-    	
-    	
-    	
-    }else{
-   
-	    echo "\n";
-	   	echo "|---------------------------------------------------|\n";
-	   	echo "|                                                   |\n";
-	   	echo "| ARQUIVO INFORMADO NAO LOCALIZADO                  |\n";
-	   	echo "|                                                   |\n";
-	   	echo "|---------------------------------------------------|\n";
-	   	
-    }
-    	*/
-    }
+   }
     
    }catch(ErrorException $e){
    	   
