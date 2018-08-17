@@ -40,6 +40,5 @@ class Processar extends Arquivo{
 	
 	public function salvar(){}
 	
-	
 }
 ?>

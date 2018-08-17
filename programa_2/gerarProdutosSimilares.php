@@ -21,6 +21,7 @@
  	 $arqProcessar->ler();
  	 
 	 $conteudo = json_decode($arqProcessar->getConteudo());
+	 $conteudoProcessado["products"] = array();
 	 
 	 foreach($conteudo->products as $key => $obj){
 
@@ -29,13 +30,13 @@
 	 	
 	 	$obj->tagsVector = $tag->getVetor(); 
 	    
-	    $conteudo->products[$key] = $obj;
-	 	
+	 	$conteudoProcessado["products"][(int)$obj->id] = $obj;
+	    
 	 	unset($tag);
 	 	
 	 }
 	 
-	 $conteudo = json_encode($conteudo);
+	 $conteudo = json_encode($conteudoProcessado);
 	 
 	 $arqProcessado = new arquivos\Processado();
 	 $arqProcessado->setNome($nome);
@@ -49,4 +50,6 @@
  	
  }
 
+ exit(1);
+ 
 ?>
