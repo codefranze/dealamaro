@@ -4,23 +4,10 @@
  
  require 'classes/Arquivo.php';
  require 'classes/Processado.php';
-
- use amaro\arquivos as arquivos;
+ require 'classes/Until.php';
  
- function ordenador(array &$similares ){
-   $c = count($similares);
-    for($i=0;$i<$c;$i++){
-     if($i < ($c-1)){
-       if($similares[$i]->distancia > $similares[($i+1)]->distancia){
-        $maior = $similares[$i];
-        $similares[($i)] = $similares[($i+1)];
-        $similares[($i+1)] = $maior;
-        ordenador($similares);
-        break;
-       }
-     }    	
-   }
- }
+ use amaro\arquivos as arquivos;
+ use amaro\untils as untils;
  
  // VERIFICA SE O NUMERO DE ARGUMENTOS CONTEMPLA AS NECESSIDADES DO PROCESSO
  if( $argc >= 3 ){
@@ -72,7 +59,11 @@
   	  	  }
   	  	 }
   	  	 
-  	  	 ordenador($similares);
+  	  	 $until = new untils\Until();
+  	  	 
+  	  	 $until->ordenarSimilares($similares);
+  	  	 
+  	  	 unset($until);
   	  	 
   	  	 echo "\n";
   	  	 echo "\n";
