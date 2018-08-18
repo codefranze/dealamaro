@@ -7,10 +7,10 @@
 
  use amaro\arquivos as arquivos;
  
- // VERIFICA SE O NUMERO DE ARGUMENTOS
+ // VERIFICA SE O NUMERO DE ARGUMENTOS CONTEMPLA AS NECESSIDADES DO PROCESSO
  if( $argc >= 3 ){
 
- // CAPTURA OS VALORES DOS ARGUMENTOS NECESSARIOS	
+ // CAPTURA OS VALORES DOS ARGUMENTOS	
   $nome = $argv[1];
   $id = (string) $argv[2];
   
@@ -27,27 +27,34 @@
   	// SE HOUVER CONTEUDO
   	if(!empty($conteudo)){
   	 	
-  	  $json = json_decode($conteudo);
+  	  $c = json_decode($conteudo, true);
   	  
-  	  if(array_key_exists("products",$json)){
-		
-  	  	$produtos = json_encode($json->products);
-  	  	$produtos = json_decode($produtos,true);
-  	  	
-  	  	if(array_key_exists($id,$produtos)){
-       
-  	  	 $produtoEncontrado = (object) $produtos[$id];
-         
-  	  	 foreach($json->products as $keyProd => $p){
-  	  	  if($p->id !== $produtoEncontrado->id){
-  	  	    $acumulado = 0;
-  	  	  	foreach($p->tagsVector as $keyTags => $value){
-  	  	     $acumulado +=  pow(($produtoEncontrado->tagsVector[$keyTags] - $value),2);
+  	  if(array_key_exists("products",$c)){
+	   if(array_key_exists($id,$c["products"])){
+        
+  	  	 $b = (object) $c["products"][$id];
+        
+  	  	 $c = json_decode($conteudo, false);
+          
+  	  	 foreach($c->products as $keyProd => $p){
+  	  	 	
+  	  	  // SE ID DO PRODUTO FOR DIFERENTE DO ID DE BUSCA EXECUTA PROCESSO DE CALCULO DE SIMILARIDADE
+  	  	  if($p->id !== $b->id){
+  	  	    
+  	  	  	$acumulado = 0;
+  	  	  	
+  	  	    foreach($p->tagsVector as $keyTags => $value){
+  	  	     $acumulado +=  pow(($b->tagsVector[$keyTags] - $value),2);
   	  	    }
+  	  	    
   	  	   $d = sqrt($acumulado);
+  	  	   
   	  	   echo $s = (1/(1+$d));
+  	  	   
   	  	   echo "\n";
+  	  	  
   	  	  }
+  	  	  
   	  	 }
   	  	
   	  	}else{
