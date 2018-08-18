@@ -7,6 +7,22 @@
 
  use amaro\arquivos as arquivos;
  
+ function ordenador(array &$similares ){
+    
+ 	$c = count($similares);
+    for($i=0;$i<$c;$i++){
+     if($similares[$i] > $similares[($i+1)]){
+       if($i < ($c-1)){
+        $maior = $similares[$i];
+        $similares[($i)] = $similares[($i+1)];
+        $similares[($i+1)] = $maior;
+        ordenador($similares);
+        break;
+       }
+      }    	
+    }
+ }
+ 
  // VERIFICA SE O NUMERO DE ARGUMENTOS CONTEMPLA AS NECESSIDADES DO PROCESSO
  if( $argc >= 3 ){
 
@@ -31,7 +47,9 @@
   	  
   	  if(array_key_exists("products",$c)){
 	   if(array_key_exists($id,$c["products"])){
-        
+         
+	   	 $similares = array();
+	   	
   	  	 $b = (object) $c["products"][$id];
         
   	  	 $c = json_decode($conteudo, false);
@@ -48,15 +66,18 @@
   	  	    }
   	  	    
   	  	   $d = sqrt($acumulado);
+  	  	   $s = (1/(1+$d));
+  	  	   $similares[] = $s;
   	  	   
-  	  	   echo $s = (1/(1+$d));
-  	  	   
-  	  	   echo "\n";
-  	  	  
   	  	  }
-  	  	  
   	  	 }
-  	  	
+  	  	 
+  	  	 print_r($similares);
+  	  	 
+  	  	 ordenador($similares);
+  	  	 
+  	  	 print_r($similares);
+  	  	 
   	  	}else{
   	  	 echo "O PRODUTO QUE VOCE ESTA BUSCANCO NAO EXISTE NA BASE";
   	  	}
