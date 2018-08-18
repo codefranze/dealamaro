@@ -8,19 +8,18 @@
  use amaro\arquivos as arquivos;
  
  function ordenador(array &$similares ){
-    
- 	$c = count($similares);
+   $c = count($similares);
     for($i=0;$i<$c;$i++){
-     if($similares[$i] > $similares[($i+1)]){
-       if($i < ($c-1)){
+     if($i < ($c-1)){
+       if($similares[$i]->distancia > $similares[($i+1)]->distancia){
         $maior = $similares[$i];
         $similares[($i)] = $similares[($i+1)];
         $similares[($i+1)] = $maior;
         ordenador($similares);
         break;
        }
-      }    	
-    }
+     }    	
+   }
  }
  
  // VERIFICA SE O NUMERO DE ARGUMENTOS CONTEMPLA AS NECESSIDADES DO PROCESSO
@@ -67,18 +66,37 @@
   	  	    
   	  	   $d = sqrt($acumulado);
   	  	   $s = (1/(1+$d));
-  	  	   $similares[] = $s;
+  	  	   $p->distancia = $s;
+  	  	   $similares[] = $p;
   	  	   
   	  	  }
   	  	 }
   	  	 
-  	  	 print_r($similares);
-  	  	 
   	  	 ordenador($similares);
   	  	 
-  	  	 print_r($similares);
+  	  	 echo "\n";
+  	  	 echo "\n";
+  	  	 echo " PRODUTO ENCONTRADO: ";
+  	  	 echo "\n";
+  	  	 echo "\n";
+  	  	 echo " ID: " . $b->id;
+  	  	 echo "\n";
+  	  	 echo " NOME: " . $b->name;
+  	  	 echo "\n";
+  	  	 echo "\n";
   	  	 
-  	  	}else{
+  	  	 echo " PRODUTOS SIMILARES: ";
+  	  	 echo "\n";
+  	  	 echo "\n";
+  	  	 
+  	  	 for($i=0; $i<=2;$i++){
+  	  	  echo " " . ($i+1) . " - " . $similares[$i]->name . " d: " . $similares[$i]->distancia;
+  	  	  echo "\n";
+  	  	 }
+
+  	  	 echo "\n";
+  	  	
+	    }else{
   	  	 echo "O PRODUTO QUE VOCE ESTA BUSCANCO NAO EXISTE NA BASE";
   	  	}
   	  	
