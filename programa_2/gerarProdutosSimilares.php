@@ -5,7 +5,7 @@
  require 'classes\Tag.php';
  require 'classes\Arquivo.php';
  require 'classes\Processar.php';
- require 'classes\processado.php';
+ require 'classes\Processado.php';
  
  use amaro\tags as tags; 
  use amaro\arquivos as arquivos;

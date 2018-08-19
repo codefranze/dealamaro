@@ -1,6 +1,6 @@
 <?php
 
-namespace amaro\tags;
+namespace classes;
 
 class Tag {
 

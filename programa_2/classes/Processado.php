@@ -5,14 +5,14 @@
  class Processado extends Arquivo{
  
     private $nome;
-	private $base = "storage/processado/";
+	protected $base = "storage/processado/";
 	private $conteudo;
 	
 	public function setNome($nome){
 	 $this->nome = $nome;	
 	}
 	
-	protected function getNome(){
+	public function getNome(){
 	 return $this->nome;
 	}
 	
