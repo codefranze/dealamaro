@@ -2,7 +2,7 @@
    
    namespace amaro;
   
-   require 'classes\Ambiente.php';
+   //require 'classes\Ambiente.php';
    require 'classes\Arquivo.php';
    require 'classes\Quadrado.php';
    
@@ -10,7 +10,7 @@
    use amaro\arquivos as arquivos;
    use amaro\quadrados as quadrados;
 
-   ambientes\Ambiente::init();
+   //ambientes\Ambiente::init();
    
    try{
    	

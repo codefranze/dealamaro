@@ -57,7 +57,26 @@
 
   // NUMERO DE ARGUMETNOS NAO CONTEMPLA O NECESSARIO PARA EXECUCAO DO PROCESSAMENTO
  }else{
-  echo "O NUMERO DE ARGUMETNOS NAO CONTEMPLA O NECESSARIO PARA EXECUCAO DO PROCESSAMENTO";	
+ 
+ 	echo "\n";
+   	echo "  |---------------------------------------------------|\n";
+   	echo "  |                                                   |\n";
+   	echo "  | NUMERO DE ARGUMENTOS INFERIOR AO ESPERADO         |\n";
+   	echo "  |                                                   |\n";
+   	echo "  |---------------------------------------------------|\n";
+   	echo "\n";
+   	echo "  |---------------------------------------------------|\n";
+   	echo "  |                                                   |\n";
+   	echo "  | INSTRUCOES                                        |\n";
+   	echo "  |                                                   |\n";
+   	echo "  | Informe o nome do arquivo que deve ser            |\n";
+   	echo "  | processado atraves da passagem de argumentos.     |\n";
+   	echo "  |                                                   |\n";
+   	echo "  |                                                   |\n";
+   	echo "  | Exemplo 1:                                        |\n";
+   	echo "  | php gerarProdutosSimilares.php produtos.txt       |\n";
+   	echo "  |                                                   |\n";
+   	echo "  |---------------------------------------------------|\n";
  }
  
  exit(1);
