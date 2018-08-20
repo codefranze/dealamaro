@@ -32,12 +32,12 @@
 	 	
 	 }
 	 
-	 $conteudo = json_encode($conteudoProcessado);
-	 
 	 $arqProcessado = new Arquivo();
+	 
 	 $arqProcessado->setNome($nome);
 	 $arqProcessado->setBaseProcessado();
-	 $arqProcessado->setConteudo($conteudo);
+	 $arqProcessado->setConteudo($conteudoProcessado);
+	 $arqProcessado->setConteudoJson();
 	 $arqProcessado->salvar();
 	 
 	 if($arqProcessado->existe()){

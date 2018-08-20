@@ -25,7 +25,7 @@
   	// SE HOUVER CONTEUDO
   	if(!empty($conteudo)){
   	 	
-  	  $c = json_decode($conteudo, true);
+  	  $c = $arqProcessado->getConteudoArray();
   	  
   	  if(array_key_exists("products",$c)){
 	   if(array_key_exists($id,$c["products"])){
@@ -34,7 +34,7 @@
 	   	
   	  	 $b = (object) $c["products"][$id];
         
-  	  	 $c = json_decode($conteudo, false);
+  	  	 $c = $arqProcessado->getConteudoJson();
           
   	  	 foreach($c->products as $keyProd => $p){
   	  	 	

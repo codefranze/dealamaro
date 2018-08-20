@@ -38,6 +38,18 @@ class Arquivo{
    return $this->conteudo;
   }  
   
+  public function getConteudoJson(){
+   return json_decode($this->getConteudo(),false);
+  }
+  
+  public function setConteudoJson(){
+   $this->setConteudo(json_encode($this->getConteudo()));
+  }
+  
+  public function getConteudoArray(){
+   return json_decode($this->getConteudo(),true);
+  }
+  
   public function existe(){
 	return file_exists($this->getBase() . $this->getNome());
   }
