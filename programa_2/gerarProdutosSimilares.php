@@ -3,6 +3,7 @@
  require 'classes\Tag.php';
  require 'classes\Arquivo.php';
  
+ // VERIFICA SE O NUMERO DE ARGUMENTOS CONTEMPLA AS NECESSIDADES DO PROCESSO
  if( $argc >= 2 ){
  
  $nome = $argv[1];
@@ -47,11 +48,12 @@
 	 }
 	 
 	 unset($arqProcessado);
-	 unset($arqProcessar);
 	 
  }else{
   echo "O ARQUIVO INFORMADO COMO ARGUMENTO NÃO EXISTE";
  }
+ 
+ unset($arqProcessar);
 
   // NUMERO DE ARGUMETNOS NAO CONTEMPLA O NECESSARIO PARA EXECUCAO DO PROCESSAMENTO
  }else{
