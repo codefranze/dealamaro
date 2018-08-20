@@ -10,7 +10,6 @@
   $nome = $argv[1];
   $id = (string) $argv[2];
   
-  //$arqProcessado = new arquivos\Processado();
   $arqProcessado = new Arquivo();
   $arqProcessado->setNome($nome);
   $arqProcessado->setBaseProcessado();
@@ -55,7 +54,6 @@
   	  	  }
   	  	 }
   	  	 
-  	  	 //$until = new untils\Until();
   	  	 $until = new Until();
   	  	 $until->ordenarSimilares($similares);
   	  	 
