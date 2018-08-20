@@ -1,7 +1,5 @@
 <?php
 
-namespace amaro\untils;
-
 class Until{
 
   public function ordenarSimilares(array &$similares){

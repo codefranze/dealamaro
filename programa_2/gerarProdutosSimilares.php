@@ -1,20 +1,16 @@
 <?php
 
- namespace amaro;
- 
  require 'classes\Tag.php';
  require 'classes\Arquivo.php';
- require 'classes\Processar.php';
- require 'classes\Processado.php';
  
- use amaro\tags as tags; 
- use amaro\arquivos as arquivos;
+ if( $argc >= 2 ){
  
  $nome = $argv[1];
  
- $arqProcessar = new arquivos\Processar();
+ $arqProcessar = new Arquivo();
  
  $arqProcessar->setNome($nome);
+ $arqProcessar->setBaseProcessar();
  
  if($arqProcessar->existe()){
      
@@ -25,7 +21,7 @@
 	 
 	 foreach($conteudo->products as $key => $obj){
 
-	 	$tag = new tags\Tag();	 	
+	 	$tag = new Tag();	 	
 	 	$tag->setTagsLista($obj->tags);
 	 	
 	 	$obj->tagsVector = $tag->getVetor(); 
@@ -38,18 +34,30 @@
 	 
 	 $conteudo = json_encode($conteudoProcessado);
 	 
-	 $arqProcessado = new arquivos\Processado();
+	 $arqProcessado = new Arquivo();
 	 $arqProcessado->setNome($nome);
+	 $arqProcessado->setBaseProcessado();
 	 $arqProcessado->setConteudo($conteudo);
 	 $arqProcessado->salvar();
+	 
+	 if($arqProcessado->existe()){
+	   echo "ARQUIVO GERADO COM SUCESSO";	
+	 }else{
+	   echo "PROBLEMA AO GERAR AQUIVO";	
+	 }
 	 
 	 unset($arqProcessado);
 	 unset($arqProcessar);
 	 
  }else{
- 	
+  echo "O ARQUIVO INFORMADO COMO ARGUMENTO NÃO EXISTE";
  }
 
+  // NUMERO DE ARGUMETNOS NAO CONTEMPLA O NECESSARIO PARA EXECUCAO DO PROCESSAMENTO
+ }else{
+  echo "O NUMERO DE ARGUMETNOS NAO CONTEMPLA O NECESSARIO PARA EXECUCAO DO PROCESSAMENTO";	
+ }
+ 
  exit(1);
  
 ?>

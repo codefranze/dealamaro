@@ -1,13 +1,7 @@
 <?php 
 
- namespace amaro;
- 
  require 'classes/Arquivo.php';
- require 'classes/Processado.php';
  require 'classes/Until.php';
- 
- use amaro\arquivos as arquivos;
- use amaro\untils as untils;
  
  // VERIFICA SE O NUMERO DE ARGUMENTOS CONTEMPLA AS NECESSIDADES DO PROCESSO
  if( $argc >= 3 ){
@@ -16,8 +10,10 @@
   $nome = $argv[1];
   $id = (string) $argv[2];
   
-  $arqProcessado = new arquivos\Processado();
+  //$arqProcessado = new arquivos\Processado();
+  $arqProcessado = new Arquivo();
   $arqProcessado->setNome($nome);
+  $arqProcessado->setBaseProcessado();
   
   // SE ARQUIVO INFORMADO COMO ARGUMENTO EXISTIR EM PROCESSADOS
   if($arqProcessado->existe()){
@@ -59,8 +55,8 @@
   	  	  }
   	  	 }
   	  	 
-  	  	 $until = new untils\Until();
-  	  	 
+  	  	 //$until = new untils\Until();
+  	  	 $until = new Until();
   	  	 $until->ordenarSimilares($similares);
   	  	 
   	  	 unset($until);
@@ -109,7 +105,7 @@
   
  // NUMERO DE ARGUMETNOS NAO CONTEMPLA O NECESSARIO PARA EXECUCAO DO PROCESSAMENTO
  }else{
-  echo "desculpa";	
+  echo "O NUMERO DE ARGUMETNOS NAO CONTEMPLA O NECESSARIO PARA EXECUCAO DO PROCESSAMENTO";	
  }
  
  exit(1);

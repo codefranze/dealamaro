@@ -1,10 +1,10 @@
 <?php
 
-namespace amaro\arquivos;
-
-abstract class Arquivo{
+class Arquivo{
 
   protected $base;
+  private $nome;
+  private $conteudo;
 	
   protected function setBase($base){
   	$this->base = $base;
