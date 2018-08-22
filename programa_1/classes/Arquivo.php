@@ -1,5 +1,4 @@
 <?php 
-namespace amaro\arquivos;
 
 class Arquivo{
  

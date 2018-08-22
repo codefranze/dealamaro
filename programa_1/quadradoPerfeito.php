@@ -1,19 +1,8 @@
 <?php 
    
-   namespace amaro;
-  
-   //require 'classes\Ambiente.php';
    require 'classes\Arquivo.php';
    require 'classes\Quadrado.php';
-   
-   use amaro\ambientes as ambientes;
-   use amaro\arquivos as arquivos;
-   use amaro\quadrados as quadrados;
 
-   //ambientes\Ambiente::init();
-   
-   try{
-   	
    if($argc < 2){
    	
    	echo "\n";
@@ -43,7 +32,7 @@
    	
    	$path = $argv[1];
    	
-   	$ar = new arquivos\Arquivo();
+   	$ar = new Arquivo();
    	
    	$ar->setPath($path);
    	
@@ -51,7 +40,7 @@
 
    	 $ar->read();
    	 
-   	 $q = new quadrados\Quadrado();
+   	 $q = new Quadrado();
    	 
    	 $q->setContent($ar->getContent());
    	 $q->converterContent();
@@ -70,10 +59,6 @@
    	
    }
    
-   }catch(ErrorException $e){
-     echo $e->getMessage();
-   }
-    
    exit(1);
    
 ?>
