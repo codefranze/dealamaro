@@ -1,5 +1,4 @@
 <?php
-
 class Quadrado{
 	
   private $content = null;
